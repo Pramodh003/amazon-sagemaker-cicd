@@ -51,7 +51,7 @@ boston_estimator = Estimator(
              "REGION": REGION,},
 
     tags=[{"Key": "email",
-           "Value": "haythemaws@gmail.com"}])
+           "Value": "pramodh@sirpi.io"}])
 
 boston_estimator.fit({'training': training_data_s3_uri,
                       'validation': validation_data_s3_uri}, wait=False)
