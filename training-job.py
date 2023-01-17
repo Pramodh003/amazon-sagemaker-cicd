@@ -11,11 +11,11 @@ import s3fs
 
 session = sagemaker.Session(boto3.session.Session())
 
-BUCKET_NAME = os.environ['BUCKET_NAME']
-PREFIX = os.environ['PREFIX']
-REGION = os.environ['AWS_DEFAULT_REGION']
+BUCKET_NAME = "testingreprex"
+PREFIX = "vepde"
+REGION = }ap-south-1"
 # Replace with your IAM role arn that has enough access (e.g. SageMakerFullAccess)
-IAM_ROLE_NAME = os.environ['IAM_ROLE_NAME']
+IAM_ROLE_NAME = "mlops"
 GITHUB_SHA = os.environ['GITHUB_SHA']
 ACCOUNT_ID = session.boto_session.client(
     'sts').get_caller_identity()['Account']
@@ -23,15 +23,15 @@ ACCOUNT_ID = session.boto_session.client(
 training_instance = 'ml.m5.large'
 
 # Replace with your data s3 path
-training_data_s3_uri = 's3://{}/{}/boston-housing-training.csv'.format(
+training_data_s3_uri = 's3://{}/{}/custom-data-train.csv'.format(
     BUCKET_NAME, PREFIX)
-validation_data_s3_uri = 's3://{}/{}/boston-housing-validation.csv'.format(
+validation_data_s3_uri = 's3://{}/{}/custom-data-train-validation.csv'.format(
     BUCKET_NAME, PREFIX)
 
 
 output_folder_s3_uri = 's3://{}/{}/output/'.format(BUCKET_NAME, PREFIX)
 source_folder = 's3://{}/{}/source-folders'.format(BUCKET_NAME, PREFIX)
-base_job_name = 'boston-housing-model'
+base_job_name = 'vepde-model'
 
 
 # Define estimator object
@@ -42,7 +42,7 @@ boston_estimator = Estimator(
     instance_type=training_instance,
     output_path=output_folder_s3_uri,
     code_location=source_folder,
-    base_job_name='boston-housing-model',
+    base_job_name='vepde-model',
     hyperparameters={'nestimators': 70},
     environment={
              "BUCKET_NAME": BUCKET_NAME,
