@@ -13,7 +13,7 @@ session = sagemaker.Session(boto3.session.Session())
 
 BUCKET_NAME = "testingreprex"
 PREFIX = "vepde"
-REGION = }ap-south-1"
+REGION = "ap-south-1"
 # Replace with your IAM role arn that has enough access (e.g. SageMakerFullAccess)
 IAM_ROLE_NAME = "mlops"
 GITHUB_SHA = os.environ['GITHUB_SHA']
